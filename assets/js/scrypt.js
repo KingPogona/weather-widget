@@ -26,11 +26,38 @@ var weatherIcon = {
 var currentTime = moment();
 
 
+function addToHistory(searchTerm) {
+    searchHistory.unshift(searchTerm);
+    
+    console.log(searchHistory);
+}
+
+
+function displayHistory(searchTerm) {
+    var listItemEl = document.createElement("li");
+
+    listItemEl.className = "list-group-item historyItem";
+    listItemEl.textContent = searchTerm;
+
+    searchListEl.prepend(listItemEl);
+}
+
+function historyClickHandler(event) {
+    event.preventDefault();
+
+    // var searchTerm = searchInputEl.value.trim();
+
+    getWeather(searchTerm);
+}
+
+
 function formSubmitHandler(event) {
     event.preventDefault();
 
     var searchTerm = searchInputEl.value.trim();
 
+    addToHistory(searchTerm);
+    displayHistory(searchTerm);
     getWeather(searchTerm);
 }
 
@@ -126,6 +153,15 @@ function write5DayText(source, day) {
 
 userFormEl.addEventListener("submit", formSubmitHandler);
 
+$("#searchList").on("click", ".historyItem", function () {
+    let text = $(this).text().trim();
+
+    
+    searchInputEl.value = text;
+    console.log("history click: " + text);
+    getWeather(text);
+
+});
 // getWeather(searchTerm);
 
 
