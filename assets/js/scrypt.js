@@ -26,10 +26,42 @@ var weatherIcon = {
 var currentTime = moment();
 
 
+
+
+function loadContent() {
+    loadedSearchHistory = JSON.parse(localStorage.getItem("weatherSearchHistory"));
+
+    if (!loadedSearchHistory) {
+        return
+    };
+
+    searchHistory = loadedSearchHistory;
+
+    console.log(searchHistory);
+
+    for (var i = searchHistory.length - 1; i > -1; i--) {
+        displayHistory(searchHistory[i])
+    }
+
+    searchInputEl.value = searchHistory[0];
+    console.log("loadContent: " + searchHistory[0]);
+    getWeather(searchHistory[0]);
+};
+// run load content
+loadContent();
+
+// saves to local storage
+function saveContent() {
+    localStorage.setItem("weatherSearchHistory", JSON.stringify(searchHistory));
+};
+
+
 function addToHistory(searchTerm) {
     searchHistory.unshift(searchTerm);
     
     console.log(searchHistory);
+
+    saveContent();
 }
 
 
@@ -138,16 +170,26 @@ function write5DayText(source, day) {
         locName = locName.toUpperCase();
 
         $('#locDate').text(locName + " (" + date + ") " + weatherIcon[weather]);
-        $('#temp').text("Temp: " + temp + " ℉");
-        $('#humidity').text("Humidity: " + humidity + "%");
-        $('#windSpeed').text("Wind Speed: " + windSpeed + " MPH");
-        $('#UV').text("UV Index: " + UVI);
+        $('#temp').text(temp + " ℉");
+        $('#humidity').text(humidity + "%");
+        $('#windSpeed').text(windSpeed + " MPH");
+        $('#UV').text(UVI);
+
+        if (UVI < 3) {
+            $('#UV').addClass("bg-success");
+        }
+        else if (UVI >= 3 && UVI < 6) {
+            $('#UV').addClass("bg-warning");
+        }
+        else {
+            $('#UV').addClass("bg-danger");
+        }
     }
     else {
         $('.date').eq(day - 1).text(date);
         $('.weather').eq(day - 1).text(weatherIcon[weather]);
-        $('.temp').eq(day - 1).text("Temp: " + temp + " ℉");
-        $('.humidity').eq(day - 1).text("Humidity: " + humidity + "%");
+        $('.temp').eq(day - 1).text(temp + " ℉");
+        $('.humidity').eq(day - 1).text(humidity + "%");
     }
 }
 
