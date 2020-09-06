@@ -23,17 +23,16 @@
         <div class="row">
 
             <aside class="col-12 col-md-3 bg-light">
-                <div class="row form-group m-1 mb-3">
+                <form class="row form-group m-1 mb-3" id="user-form">
                     <label for="searchTerm" class="font-weight-bold">Search for a City:</label>
                     <div class="input-group">
-                        <input class="" type="text" id="searchTerm" value="Cats" />
+                        <input class="" type="text" id="searchTerm"/>
                         <button class="btn btn-primary"><i class="fas fa-search text-white"></i></button>
                     </div>
-                </div>
+                </form>
                 <div class="row m-1 mb-3">
-                    <ul class="list-group w-100">
-                        <li class="list-group-item">test</li>
-                        <li class="list-group-item">test2</li>
+                    <ul class="list-group w-100" id="searchList">
+                        <!-- <li class="list-group-item">test</li> -->
                     </ul>
                 </div>
             </aside>
@@ -43,19 +42,11 @@
                     <section class="row mt-3 mx-1">
                         <div class="card w-100">
                             <div class="card-body">
-                                <h4 class="card-title">Card title</h4>
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk
-                                    of the card's content.</p>
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk
-                                    of the card's content.</p>
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk
-                                    of the card's content.</p>
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk
-                                    of the card's content.</p>
+                                <h4 class="card-title" id="locDate">Card title</h4>
+                                <p class="card-text" id="temp"></p>
+                                <p class="card-text" id="humidity"></p>
+                                <p class="card-text" id="windSpeed"></p>
+                                <p class="card-text" id="UV"></p>
                             </div>
                         </div>
                     </section>
@@ -70,7 +61,7 @@
                                 <li class="card col mr-3 px-0 bg-primary text-white">
                                     <div class="card-body">
                                         <h6 class="card-title date"></h6>
-                                        <p class="card-text weatherIcon"></p>
+                                        <p class="card-text weather"></p>
                                         <p class="card-text temp"></p>
                                         <p class="card-text humidity"></p>
                                     </div>
@@ -141,6 +132,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
         crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="./assets/js/scrypt.js"></script>
 </body>
 
